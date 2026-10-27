@@ -64,7 +64,7 @@ function Signup() {
           </form>
         </>
       )}
-      <p className="mt-4 text-center text-sm text-muted-foreground">{t("haveAccount")} <Link to="/login" search={{ redirect: undefined }} className="text-primary">{t("login")}</Link></p>
+      <p className="mt-4 text-center text-sm text-muted-foreground">{t("haveAccount")} <Link to="/login" className="text-primary">{t("login")}</Link></p>
     </AuthCard>
   );
 }

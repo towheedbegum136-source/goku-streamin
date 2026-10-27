@@ -10,7 +10,7 @@ import { useI18n } from "@/lib/i18n";
 import { safeRedirect, useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/login")({
-  validateSearch: (s: Record<string, unknown>): { redirect?: string } => ({ redirect: typeof s["redirect"] === "string" ? s["redirect"] : undefined }),
+  validateSearch: (s: Record<string, unknown>): { redirect?: string | undefined } => ({ redirect: typeof s["redirect"] === "string" ? s["redirect"] : undefined }),
   head: () => ({
     meta: [
       { title: "Login — Goku Streaming" },
