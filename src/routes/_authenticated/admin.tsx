@@ -53,7 +53,7 @@ function Admin() {
   const saveAnime = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form) return;
-    if (!form.title.trim()) return toast.error("Title is required");
+    if (!form.title.trim()) { toast.error("Title is required"); return; }
     const row = {
       title: form.title.trim(), description: form.description.trim(),
       thumbnail_url: form.thumbnail_url.trim() || null, banner_url: form.banner_url.trim() || null,
@@ -62,15 +62,15 @@ function Admin() {
       published: form.published, featured: form.featured,
     };
     const { error } = form.id ? await supabase.from("anime").update(row).eq("id", form.id) : await supabase.from("anime").insert(row);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Anime saved");
     setForm(null);
     refresh();
   };
 
   const toggle = async (a: Anime, field: "published" | "featured") => {
-    const { error } = await supabase.from("anime").update({ [field]: !a[field] }).eq("id", a.id);
-    if (error) return toast.error(error.message);
+    const { error } = await supabase.from("anime").update(field === "published" ? { published: !a.published } : { featured: !a.featured }).eq("id", a.id);
+    if (error) { toast.error(error.message); return; }
     refresh();
   };
 
@@ -166,12 +166,12 @@ function EpisodeManager({ anime, onClose }: { anime: Anime; onClose: () => void 
     e.preventDefault();
     if (!form) return;
     const n = Number(form.episode_number);
-    if (!Number.isInteger(n) || n < 1) return toast.error("Episode number must be 1 or higher");
-    if (!form.title.trim()) return toast.error("Episode title is required");
-    if (!check || check.kind === "unsupported") return toast.error("That video link isn't supported");
+    if (!Number.isInteger(n) || n < 1) { toast.error("Episode number must be 1 or higher"); return; }
+    if (!form.title.trim()) { toast.error("Episode title is required"); return; }
+    if (!check || check.kind === "unsupported") { toast.error("That video link isn't supported"); return; }
     const row = { anime_id: anime.id, episode_number: n, title: form.title.trim(), video_url: form.video_url.trim(), audio_language: form.audio_language, version: form.version, published: form.published };
     const { error } = form.id ? await supabase.from("episodes").update(row).eq("id", form.id) : await supabase.from("episodes").insert(row);
-    if (error) return toast.error(error.code === "23505" ? "That episode number already exists for this language/version" : error.message);
+    if (error) { toast.error(error.code === "23505" ? "That episode number already exists for this language/version" : error.message); return; }
     toast.success("Episode saved");
     setForm(null);
     done();
