@@ -10,12 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AnimeIndexRouteImport } from './routes/anime.index'
+import { Route as AnimeIdRouteImport } from './routes/anime.$id'
+import { Route as WatchEpisodeIdRouteImport } from './routes/watch.$episodeId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -23,39 +38,99 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnimeIndexRoute = AnimeIndexRouteImport.update({
   id: '/anime/',
   path: '/anime/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnimeIdRoute = AnimeIdRouteImport.update({
+  id: '/anime/$id',
+  path: '/anime/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WatchEpisodeIdRoute = WatchEpisodeIdRouteImport.update({
+  id: '/watch/$episodeId',
+  path: '/watch/$episodeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
+  '/signup': typeof SignupRoute
+  '/anime/$id': typeof AnimeIdRoute
+  '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime/': typeof AnimeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
+  '/signup': typeof SignupRoute
+  '/anime/$id': typeof AnimeIdRoute
+  '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime': typeof AnimeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
+  '/signup': typeof SignupRoute
+  '/anime/$id': typeof AnimeIdRoute
+  '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime/': typeof AnimeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/search' | '/anime/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/reset-password'
+    | '/search'
+    | '/signup'
+    | '/anime/$id'
+    | '/watch/$episodeId'
+    | '/anime/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/search' | '/anime'
-  id: '__root__' | '/' | '/search' | '/anime/'
+  to:
+    | '/'
+    | '/login'
+    | '/reset-password'
+    | '/search'
+    | '/signup'
+    | '/anime/$id'
+    | '/watch/$episodeId'
+    | '/anime'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/reset-password'
+    | '/search'
+    | '/signup'
+    | '/anime/$id'
+    | '/watch/$episodeId'
+    | '/anime/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SearchRoute: typeof SearchRoute
+  SignupRoute: typeof SignupRoute
+  AnimeIdRoute: typeof AnimeIdRoute
+  WatchEpisodeIdRoute: typeof WatchEpisodeIdRoute
   AnimeIndexRoute: typeof AnimeIndexRoute
 }
 
@@ -68,11 +143,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/anime/': {
@@ -82,12 +178,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anime/$id': {
+      id: '/anime/$id'
+      path: '/anime/$id'
+      fullPath: '/anime/$id'
+      preLoaderRoute: typeof AnimeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/watch/$episodeId': {
+      id: '/watch/$episodeId'
+      path: '/watch/$episodeId'
+      fullPath: '/watch/$episodeId'
+      preLoaderRoute: typeof WatchEpisodeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SearchRoute: SearchRoute,
+  SignupRoute: SignupRoute,
+  AnimeIdRoute: AnimeIdRoute,
+  WatchEpisodeIdRoute: WatchEpisodeIdRoute,
   AnimeIndexRoute: AnimeIndexRoute,
 }
 export const routeTree = rootRouteImport
