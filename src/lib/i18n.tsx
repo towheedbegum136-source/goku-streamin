@@ -1,0 +1,243 @@
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+
+export type Lang = "en" | "hi" | "te";
+export const LANGS: { code: Lang; label: string }[] = [
+  { code: "en", label: "English" },
+  { code: "hi", label: "हिन्दी" },
+  { code: "te", label: "తెలుగు" },
+];
+
+const en = {
+  home: "Home",
+  browse: "Browse",
+  search: "Search",
+  searchPlaceholder: "Search anime…",
+  login: "Login",
+  signup: "Sign up",
+  logout: "Sign out",
+  account: "Account",
+  admin: "Admin",
+  heroTag: "Saiyan · Pirate · Shinobi",
+  heroLine1: "Your anime.",
+  heroLine2: "Full power.",
+  heroDesc: "Dragon Ball, One Piece, Naruto and more — your favourite shows in one neon-lit library.",
+  watchNow: "Watch now",
+  details: "Details",
+  browseAll: "Browse all anime",
+  latest: "Latest anime",
+  noAnime: "No anime has been published yet.",
+  noAnimeAdmin: "Open the Admin Dashboard to add your first anime.",
+  noResults: "No anime matches these filters.",
+  allGenres: "All genres",
+  allLanguages: "All languages",
+  allStatus: "All statuses",
+  ongoing: "Ongoing",
+  completed: "Completed",
+  upcoming: "Upcoming",
+  episodes: "Episodes",
+  episode: "Episode",
+  noEpisodes: "No episodes have been added yet. Check back soon!",
+  prev: "Previous",
+  next: "Next",
+  backToAnime: "Back to anime",
+  sub: "Subtitled",
+  dub: "Dubbed",
+  audio: "Audio",
+  available: "Available versions",
+  email: "Email",
+  password: "Password",
+  name: "Display name",
+  continueGoogle: "Continue with Google",
+  or: "or",
+  noAccount: "Don't have an account?",
+  haveAccount: "Already have an account?",
+  forgot: "Forgot password?",
+  welcomeBack: "Welcome back",
+  createAccount: "Create your account",
+  checkEmail: "Check your email to confirm your account, then log in.",
+  resetSent: "If that email exists, a reset link is on its way.",
+  newPassword: "New password",
+  updatePassword: "Update password",
+  signedInAs: "Signed in as",
+  role: "Role",
+  administrator: "Administrator",
+  member: "Member",
+  notFound: "Page not found",
+  notFoundDesc: "This page vanished like an instant transmission.",
+  goHome: "Go home",
+  footer: "Stream responsibly. Only authorised content is published.",
+  language: "Language",
+  videoUnsupported: "This video link can't be played here.",
+  videoUnsupportedHelp: "Supported: YouTube, Vimeo, Dailymotion, Google Drive share links, and direct .mp4 / .webm files.",
+  openSource: "Open original link",
+};
+
+type Dict = typeof en;
+
+const hi: Dict = {
+  home: "होम",
+  browse: "ब्राउज़",
+  search: "खोजें",
+  searchPlaceholder: "एनीमे खोजें…",
+  login: "लॉग इन",
+  signup: "साइन अप",
+  logout: "साइन आउट",
+  account: "खाता",
+  admin: "एडमिन",
+  heroTag: "सैयान · समुद्री डाकू · शिनोबी",
+  heroLine1: "आपका एनीमे।",
+  heroLine2: "पूरी ताक़त।",
+  heroDesc: "ड्रैगन बॉल, वन पीस, नारुतो और बहुत कुछ — आपके पसंदीदा शो एक ही जगह।",
+  watchNow: "अभी देखें",
+  details: "विवरण",
+  browseAll: "सभी एनीमे देखें",
+  latest: "नए एनीमे",
+  noAnime: "अभी तक कोई एनीमे प्रकाशित नहीं हुआ है।",
+  noAnimeAdmin: "पहला एनीमे जोड़ने के लिए एडमिन डैशबोर्ड खोलें।",
+  noResults: "इन फ़िल्टर से कोई एनीमे नहीं मिला।",
+  allGenres: "सभी शैलियाँ",
+  allLanguages: "सभी भाषाएँ",
+  allStatus: "सभी स्थिति",
+  ongoing: "जारी",
+  completed: "पूर्ण",
+  upcoming: "आगामी",
+  episodes: "एपिसोड",
+  episode: "एपिसोड",
+  noEpisodes: "अभी कोई एपिसोड नहीं जोड़ा गया है। जल्द वापस आएँ!",
+  prev: "पिछला",
+  next: "अगला",
+  backToAnime: "एनीमे पर वापस",
+  sub: "सबटाइटल",
+  dub: "डब",
+  audio: "ऑडियो",
+  available: "उपलब्ध संस्करण",
+  email: "ईमेल",
+  password: "पासवर्ड",
+  name: "नाम",
+  continueGoogle: "Google से जारी रखें",
+  or: "या",
+  noAccount: "खाता नहीं है?",
+  haveAccount: "पहले से खाता है?",
+  forgot: "पासवर्ड भूल गए?",
+  welcomeBack: "फिर से स्वागत है",
+  createAccount: "अपना खाता बनाएँ",
+  checkEmail: "खाता पुष्टि के लिए अपना ईमेल देखें, फिर लॉग इन करें।",
+  resetSent: "यदि यह ईमेल मौजूद है, तो रीसेट लिंक भेजा गया है।",
+  newPassword: "नया पासवर्ड",
+  updatePassword: "पासवर्ड अपडेट करें",
+  signedInAs: "इस रूप में साइन इन",
+  role: "भूमिका",
+  administrator: "एडमिनिस्ट्रेटर",
+  member: "सदस्य",
+  notFound: "पेज नहीं मिला",
+  notFoundDesc: "यह पेज इंस्टेंट ट्रांसमिशन की तरह गायब हो गया।",
+  goHome: "होम जाएँ",
+  footer: "केवल अधिकृत सामग्री प्रकाशित की जाती है।",
+  language: "भाषा",
+  videoUnsupported: "यह वीडियो लिंक यहाँ नहीं चल सकता।",
+  videoUnsupportedHelp: "समर्थित: YouTube, Vimeo, Dailymotion, Google Drive लिंक, और .mp4 / .webm फ़ाइलें।",
+  openSource: "मूल लिंक खोलें",
+};
+
+const te: Dict = {
+  home: "హోమ్",
+  browse: "బ్రౌజ్",
+  search: "వెతకండి",
+  searchPlaceholder: "అనిమే వెతకండి…",
+  login: "లాగిన్",
+  signup: "సైన్ అప్",
+  logout: "సైన్ అవుట్",
+  account: "ఖాతా",
+  admin: "అడ్మిన్",
+  heroTag: "సైయాన్ · పైరేట్ · షినోబి",
+  heroLine1: "మీ అనిమే.",
+  heroLine2: "పూర్తి శక్తి.",
+  heroDesc: "డ్రాగన్ బాల్, వన్ పీస్, నరుటో మరియు మరెన్నో — మీకు ఇష్టమైన షోలు ఒకే చోట.",
+  watchNow: "ఇప్పుడే చూడండి",
+  details: "వివరాలు",
+  browseAll: "అన్ని అనిమేలు",
+  latest: "తాజా అనిమే",
+  noAnime: "ఇంకా ఏ అనిమే ప్రచురించబడలేదు.",
+  noAnimeAdmin: "మొదటి అనిమే జోడించడానికి అడ్మిన్ డ్యాష్‌బోర్డ్ తెరవండి.",
+  noResults: "ఈ ఫిల్టర్‌లకు సరిపోయే అనిమే లేదు.",
+  allGenres: "అన్ని శైలులు",
+  allLanguages: "అన్ని భాషలు",
+  allStatus: "అన్ని స్థితులు",
+  ongoing: "కొనసాగుతోంది",
+  completed: "పూర్తయింది",
+  upcoming: "రాబోయేది",
+  episodes: "ఎపిసోడ్‌లు",
+  episode: "ఎపిసోడ్",
+  noEpisodes: "ఇంకా ఎపిసోడ్‌లు జోడించబడలేదు. త్వరలో మళ్ళీ రండి!",
+  prev: "మునుపటి",
+  next: "తదుపరి",
+  backToAnime: "అనిమేకి తిరిగి",
+  sub: "సబ్‌టైటిల్",
+  dub: "డబ్",
+  audio: "ఆడియో",
+  available: "అందుబాటులో ఉన్న వెర్షన్లు",
+  email: "ఈమెయిల్",
+  password: "పాస్‌వర్డ్",
+  name: "పేరు",
+  continueGoogle: "Google తో కొనసాగండి",
+  or: "లేదా",
+  noAccount: "ఖాతా లేదా?",
+  haveAccount: "ఇప్పటికే ఖాతా ఉందా?",
+  forgot: "పాస్‌వర్డ్ మర్చిపోయారా?",
+  welcomeBack: "మళ్ళీ స్వాగతం",
+  createAccount: "మీ ఖాతా సృష్టించండి",
+  checkEmail: "ఖాతా నిర్ధారణ కోసం మీ ఈమెయిల్ చూడండి, తర్వాత లాగిన్ అవ్వండి.",
+  resetSent: "ఆ ఈమెయిల్ ఉంటే, రీసెట్ లింక్ పంపబడింది.",
+  newPassword: "కొత్త పాస్‌వర్డ్",
+  updatePassword: "పాస్‌వర్డ్ మార్చండి",
+  signedInAs: "సైన్ ఇన్ అయినవారు",
+  role: "పాత్ర",
+  administrator: "అడ్మినిస్ట్రేటర్",
+  member: "సభ్యుడు",
+  notFound: "పేజీ కనబడలేదు",
+  notFoundDesc: "ఈ పేజీ ఇన్‌స్టంట్ ట్రాన్స్‌మిషన్‌లా మాయమైంది.",
+  goHome: "హోమ్‌కి వెళ్ళండి",
+  footer: "అధికారిక కంటెంట్ మాత్రమే ప్రచురించబడుతుంది.",
+  language: "భాష",
+  videoUnsupported: "ఈ వీడియో లింక్ ఇక్కడ ప్లే కాదు.",
+  videoUnsupportedHelp: "మద్దతు: YouTube, Vimeo, Dailymotion, Google Drive లింక్‌లు, .mp4 / .webm ఫైళ్లు.",
+  openSource: "అసలు లింక్ తెరవండి",
+};
+
+const DICTS: Record<Lang, Dict> = { en, hi, te };
+export type TKey = keyof Dict;
+
+const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: (k: TKey) => string }>({
+  lang: "en",
+  setLang: () => {},
+  t: (k) => en[k],
+});
+
+export function I18nProvider({ children }: { children: ReactNode }) {
+  const [lang, setLangState] = useState<Lang>("en");
+  useEffect(() => {
+    const saved = localStorage.getItem("gs-lang") as Lang | null;
+    if (saved && saved in DICTS) setLangState(saved);
+  }, []);
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+  const setLang = (l: Lang) => {
+    setLangState(l);
+    localStorage.setItem("gs-lang", l);
+  };
+  return (
+    <Ctx.Provider value={{ lang, setLang, t: (k) => DICTS[lang][k] ?? en[k] }}>
+      {children}
+    </Ctx.Provider>
+  );
+}
+
+export const useI18n = () => useContext(Ctx);
+
+export const AUDIO_LABEL: Record<string, string> = {
+  japanese: "Japanese",
+  english: "English",
+  hindi: "Hindi",
+  telugu: "Telugu",
+};
