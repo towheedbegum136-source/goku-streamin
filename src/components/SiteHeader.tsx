@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, Search, X, Globe, Shield, User } from "lucide-react";
+import { Menu, Search, X, Globe, Shield, User, Settings } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth";
@@ -56,6 +56,11 @@ export function SiteHeader() {
       {isAdmin && (
         <Link to="/admin" className="flex items-center gap-1 hover:text-foreground" onClick={() => setOpen(false)}>
           <Shield className="size-4" /> {t("admin")}
+        </Link>
+      )}
+      {isAdmin && (
+        <Link to="/settings" className="flex items-center gap-1 hover:text-foreground" onClick={() => setOpen(false)}>
+          <Settings className="size-4" /> {t("settings")}
         </Link>
       )}
     </>

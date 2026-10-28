@@ -18,6 +18,7 @@ import { Route as SearchRouteImport } from './routes/search'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AnimeIndexRouteImport } from './routes/anime.index'
 import { Route as AnimeIdRouteImport } from './routes/anime.$id'
 import { Route as WatchEpisodeIdRouteImport } from './routes/watch.$episodeId'
@@ -66,6 +67,11 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AnimeIndexRoute = AnimeIndexRouteImport.update({
   id: '/anime/',
   path: '/anime/',
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/account': typeof AuthenticatedAccountRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/anime/$id': typeof AnimeIdRoute
   '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime/': typeof AnimeIndexRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/account': typeof AuthenticatedAccountRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/anime/$id': typeof AnimeIdRoute
   '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime': typeof AnimeIndexRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/_authenticated/account': typeof AuthenticatedAccountRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/anime/$id': typeof AnimeIdRoute
   '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime/': typeof AnimeIndexRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/account'
     | '/admin'
+    | '/settings'
     | '/anime/$id'
     | '/watch/$episodeId'
     | '/anime/'
@@ -147,6 +157,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/account'
     | '/admin'
+    | '/settings'
     | '/anime/$id'
     | '/watch/$episodeId'
     | '/anime'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/_authenticated/account'
     | '/_authenticated/admin'
+    | '/_authenticated/settings'
     | '/anime/$id'
     | '/watch/$episodeId'
     | '/anime/'
@@ -244,6 +256,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/anime/': {
       id: '/anime/'
       path: '/anime'
@@ -271,11 +290,13 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAccountRoute: AuthenticatedAccountRoute,
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
