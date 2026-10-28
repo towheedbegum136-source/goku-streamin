@@ -10,8 +10,9 @@ export function SiteFooter() {
         <Logo size={36} />
         <nav className="flex gap-6 text-sm text-muted-foreground">
           <Link to="/">{t("home")}</Link>
-          <Link to="/anime">{t("browse")}</Link>
+          <Link to="/anime" search={{ genre: "" }}>{t("browse")}</Link>
           <Link to="/search" search={{ q: "" }}>{t("search")}</Link>
+          <Link to="/about">{t("about")}</Link>
         </nav>
         <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Goku Streaming. {t("footer")}</p>
       </div>

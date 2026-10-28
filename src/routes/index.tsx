@@ -109,7 +109,7 @@ function Categories() {
   const genres = [...new Set([...DEFAULT_GENRES, ...counts.keys()])].slice(0, 8);
 
   return (
-    <section className="mx-auto max-w-7xl px-4 pb-14 md:px-6">
+    <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
       <div className="mb-6 flex items-end justify-between">
         <div>
           <h2 className="flex items-center gap-3 text-3xl font-extrabold"><span className="h-8 w-1.5 rounded bg-brand" />{t("categories")}</h2>
@@ -128,7 +128,7 @@ function Categories() {
               </span>
               <span>
                 <span className="block font-bold">{g}</span>
-                <span className="block text-xs text-muted-foreground">{n} {n === 1 ? t("episode") : t("episodes").toLowerCase() === t("episodes") ? "anime" : "anime"}</span>
+                <span className="block text-xs text-muted-foreground">{n} anime</span>
               </span>
             </Link>
           );

@@ -51,7 +51,8 @@ export function SiteHeader() {
   const links = (
     <>
       <Link to="/" className="hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }} onClick={() => setOpen(false)}>{t("home")}</Link>
-      <Link to="/anime" className="hover:text-foreground" activeProps={{ className: "text-foreground" }} onClick={() => setOpen(false)}>{t("browse")}</Link>
+      <Link to="/anime" search={{ genre: "" }} className="hover:text-foreground" activeProps={{ className: "text-foreground" }} onClick={() => setOpen(false)}>{t("browse")}</Link>
+      <Link to="/about" className="hover:text-foreground" activeProps={{ className: "text-foreground" }} onClick={() => setOpen(false)}>{t("about")}</Link>
       {isAdmin && (
         <Link to="/admin" className="flex items-center gap-1 hover:text-foreground" onClick={() => setOpen(false)}>
           <Shield className="size-4" /> {t("admin")}
