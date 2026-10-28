@@ -28,10 +28,7 @@ function About() {
     <div className="mx-auto max-w-4xl px-4 pt-16 md:px-6">
       <div className="flex flex-col items-center text-center">
         <LogoMark size={96} />
-        <h1 className="mt-8 text-4xl font-black md:text-5xl">
-          {t("aboutTagline").replace("Goku Streaming", "")}
-          <span className="text-brand">Goku Streaming</span>
-        </h1>
+        <h1 className="mt-8 text-4xl font-black md:text-5xl">{t("aboutTagline")}</h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{t("heroDesc")}</p>
       </div>
       <div className="mt-12 grid gap-4 md:grid-cols-3">
