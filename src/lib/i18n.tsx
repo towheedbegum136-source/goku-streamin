@@ -78,6 +78,15 @@ const en = {
   aboutP2: "Watch in the way that suits you: every episode is clearly labelled by audio language and as subtitled or dubbed, with English, Hindi and Telugu interface options.",
   aboutP3: "We only publish authorised content. If a video link can't be played, we say so — no fake players, no random videos.",
   startWatching: "Start watching",
+  settings: "Settings",
+  settingsDesc: "Edit your website's name and text. Changes apply across the whole site.",
+  siteName: "Website name",
+  siteNameRequired: "Website name is required",
+  tagline: "Tagline",
+  footerNote: "Footer note",
+  save: "Save changes",
+  saving: "Saving…",
+  settingsSaved: "Settings saved",
 };
 
 type Dict = typeof en;
@@ -153,6 +162,15 @@ const hi: Dict = {
   aboutP2: "अपने तरीके से देखें: हर एपिसोड ऑडियो भाषा और सबटाइटल/डब के साथ स्पष्ट रूप से चिह्नित है, साथ में English, हिन्दी और తెలుగు इंटरफ़ेस विकल्प।",
   aboutP3: "हम केवल अधिकृत सामग्री प्रकाशित करते हैं। यदि कोई वीडियो लिंक नहीं चल सकता, तो हम साफ़ बताते हैं — कोई नकली प्लेयर नहीं, कोई बेतुका वीडियो नहीं।",
   startWatching: "देखना शुरू करें",
+  settings: "सेटिंग्स",
+  settingsDesc: "अपनी वेबसाइट का नाम और टेक्स्ट बदलें। बदलाव पूरी साइट पर लागू होंगे।",
+  siteName: "वेबसाइट का नाम",
+  siteNameRequired: "वेबसाइट का नाम आवश्यक है",
+  tagline: "टैगलाइन",
+  footerNote: "फ़ुटर नोट",
+  save: "बदलाव सहेजें",
+  saving: "सहेजा जा रहा है…",
+  settingsSaved: "सेटिंग्स सहेजी गईं",
 };
 
 const te: Dict = {
@@ -226,6 +244,15 @@ const te: Dict = {
   aboutP2: "మీకు సరిపోయే విధంగా చూడండి: ప్రతి ఎపిసోడ్ ఆడియో భాష మరియు సబ్‌టైటిల్/డబ్‌గా స్పష్టంగా గుర్తించబడింది, English, हिन्दी మరియు తెలుగు ఇంటర్‌ఫేస్ ఎంపికలతో.",
   aboutP3: "మేము అధికారిక కంటెంట్ మాత్రమే ప్రచురిస్తాము. వీడియో లింక్ ప్లే కాకపోతే, మేము స్పష్టంగా చెబుతాము — నకిలీ ప్లేయర్లు లేవు, యాదృచ్ఛిక వీడియోలు లేవు.",
   startWatching: "చూడటం ప్రారంభించండి",
+  settings: "సెట్టింగ్స్",
+  settingsDesc: "మీ వెబ్‌సైట్ పేరు మరియు టెక్స్ట్ మార్చండి. మార్పులు మొత్తం సైట్‌లో వర్తిస్తాయి.",
+  siteName: "వెబ్‌సైట్ పేరు",
+  siteNameRequired: "వెబ్‌సైట్ పేరు అవసరం",
+  tagline: "ట్యాగ్‌లైన్",
+  footerNote: "ఫూటర్ నోట్",
+  save: "మార్పులు సేవ్ చేయండి",
+  saving: "సేవ్ అవుతోంది…",
+  settingsSaved: "సెట్టింగ్స్ సేవ్ అయ్యాయి",
 };
 
 const DICTS: Record<Lang, Dict> = { en, hi, te };

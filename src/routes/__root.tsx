@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AuthProvider } from "@/lib/auth";
 import { I18nProvider, useI18n } from "@/lib/i18n";
+import { SettingsProvider } from "@/lib/settings";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LogoMark } from "@/components/Logo";
@@ -111,14 +112,16 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
-        <AuthProvider>
+        <SettingsProvider>
+          <AuthProvider>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
             <main className="flex-1"><Outlet /></main>
             <SiteFooter />
           </div>
           <Toaster />
-        </AuthProvider>
+          </AuthProvider>
+        </SettingsProvider>
       </I18nProvider>
     </QueryClientProvider>
   );
