@@ -14,7 +14,10 @@ export function Browse({ title, initialQ = "", initialGenre = "" }: { title: str
   const [lang, setLang] = useState("");
   const [status, setStatus] = useState("");
 
-  const genres = useMemo(() => [...new Set(anime.flatMap((a) => a.genres))].sort(), [anime]);
+  const genres = useMemo(
+    () => [...new Set([...anime.flatMap((a) => a.genres), ...(genre ? [genre] : [])])].sort(),
+    [anime, genre],
+  );
   const results = anime.filter((a) => {
     const text = q.trim().toLowerCase();
     if (text && !`${a.title} ${a.description} ${a.genres.join(" ")}`.toLowerCase().includes(text)) return false;
