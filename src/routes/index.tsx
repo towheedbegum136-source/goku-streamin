@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Play, ArrowRight, Sparkles, Info } from "lucide-react";
+import { Play, ArrowRight, Sparkles, Info, Swords, Compass, Wand2, Laugh, Heart, Rocket, Tag } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import { Button } from "@/components/ui/button";
 import { AnimeCard } from "@/components/AnimeCard";
@@ -53,21 +53,23 @@ function Index() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="hero" size="xl">
                 {featured ? <Link to="/anime/$id" params={{ id: featured.id }}><Play className="fill-current" />{t("watchNow")}</Link>
-                  : <Link to="/anime"><Play className="fill-current" />{t("watchNow")}</Link>}
+                  : <Link to="/anime" search={{ genre: "" }}><Play className="fill-current" />{t("watchNow")}</Link>}
               </Button>
               <Button asChild variant="glass" size="xl">
                 {featured ? <Link to="/anime/$id" params={{ id: featured.id }}><Info />{t("details")}</Link>
-                  : <Link to="/anime">{t("browseAll")}<ArrowRight /></Link>}
+                  : <Link to="/anime" search={{ genre: "" }}>{t("browseAll")}<ArrowRight /></Link>}
               </Button>
             </div>
           </div>
         </div>
       </section>
 
+      <Categories />
+
       <section className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-6 flex items-end justify-between">
           <h2 className="flex items-center gap-3 text-3xl font-extrabold"><span className="h-8 w-1.5 rounded bg-brand" />{t("latest")}</h2>
-          <Link to="/anime" className="flex items-center gap-1 text-sm text-primary">{t("browseAll")} <ArrowRight className="size-4" /></Link>
+          <Link to="/anime" search={{ genre: "" }} className="flex items-center gap-1 text-sm text-primary">{t("browseAll")} <ArrowRight className="size-4" /></Link>
         </div>
         {isLoading ? (
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
@@ -85,5 +87,53 @@ function Index() {
         )}
       </section>
     </>
+  );
+}
+
+const DEFAULT_GENRES = ["Action", "Adventure", "Fantasy", "Comedy", "Drama", "Sci-Fi"];
+const GENRE_ICON: Record<string, typeof Swords> = {
+  action: Swords,
+  adventure: Compass,
+  fantasy: Wand2,
+  comedy: Laugh,
+  drama: Heart,
+  "sci-fi": Rocket,
+  scifi: Rocket,
+};
+
+function Categories() {
+  const { t } = useI18n();
+  const { data: anime = [] } = useQuery({ queryKey: ["anime"], queryFn: listAnime });
+  const counts = new Map<string, number>();
+  for (const a of anime) for (const g of a.genres) counts.set(g, (counts.get(g) ?? 0) + 1);
+  const genres = [...new Set([...DEFAULT_GENRES, ...counts.keys()])].slice(0, 8);
+
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <div className="mb-6 flex items-end justify-between">
+        <div>
+          <h2 className="flex items-center gap-3 text-3xl font-extrabold"><span className="h-8 w-1.5 rounded bg-brand" />{t("categories")}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">{t("categoriesDesc")}</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {genres.map((g) => {
+          const Icon = GENRE_ICON[g.toLowerCase()] ?? Tag;
+          const n = counts.get(g) ?? 0;
+          return (
+            <Link key={g} to="/anime" search={{ genre: g }}
+              className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/60 hover:shadow-[0_0_30px_-10px_var(--primary)]">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary transition group-hover:scale-110">
+                <Icon className="size-6" />
+              </span>
+              <span>
+                <span className="block font-bold">{g}</span>
+                <span className="block text-xs text-muted-foreground">{n} anime</span>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </section>
   );
 }

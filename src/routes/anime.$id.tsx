@@ -47,7 +47,7 @@ function AnimeDetails() {
   if (isLoading) return <div className="mx-auto max-w-7xl p-10"><div className="h-80 animate-pulse rounded-2xl bg-card" /></div>;
   if (!data) return (
     <div className="p-16 text-center"><h1 className="text-2xl font-bold">{t("notFound")}</h1>
-      <Button asChild variant="hero" className="mt-4"><Link to="/anime">{t("browseAll")}</Link></Button></div>
+      <Button asChild variant="hero" className="mt-4"><Link to="/anime" search={{ genre: "" }}>{t("browseAll")}</Link></Button></div>
   );
 
   return (

@@ -70,6 +70,14 @@ const en = {
   videoUnsupported: "This video link can't be played here.",
   videoUnsupportedHelp: "Supported: YouTube, Vimeo, Dailymotion, Google Drive share links, and direct .mp4 / .webm files.",
   openSource: "Open original link",
+  categories: "Categories",
+  categoriesDesc: "Jump straight into a genre you love.",
+  about: "About",
+  aboutTagline: "About Goku Streaming",
+  aboutP1: "Goku Streaming is a neon-lit home for anime fans — Dragon Ball, One Piece, Naruto and more, gathered in one fast, beautiful library built for mobile, tablet and desktop.",
+  aboutP2: "Watch in the way that suits you: every episode is clearly labelled by audio language and as subtitled or dubbed, with English, Hindi and Telugu interface options.",
+  aboutP3: "We only publish authorised content. If a video link can't be played, we say so — no fake players, no random videos.",
+  startWatching: "Start watching",
 };
 
 type Dict = typeof en;
@@ -137,6 +145,14 @@ const hi: Dict = {
   videoUnsupported: "यह वीडियो लिंक यहाँ नहीं चल सकता।",
   videoUnsupportedHelp: "समर्थित: YouTube, Vimeo, Dailymotion, Google Drive लिंक, और .mp4 / .webm फ़ाइलें।",
   openSource: "मूल लिंक खोलें",
+  categories: "श्रेणियाँ",
+  categoriesDesc: "अपनी पसंदीदा शैली में सीधे जाएँ।",
+  about: "हमारे बारे में",
+  aboutTagline: "Goku Streaming के बारे में",
+  aboutP1: "Goku Streaming एनीमे प्रशंसकों का नियॉन-लिट घर है — ड्रैगन बॉल, वन पीस, नारुतो और बहुत कुछ, एक तेज़ और सुंदर लाइब्रेरी में, मोबाइल, टैबलेट और डेस्कटॉप के लिए।",
+  aboutP2: "अपने तरीके से देखें: हर एपिसोड ऑडियो भाषा और सबटाइटल/डब के साथ स्पष्ट रूप से चिह्नित है, साथ में English, हिन्दी और తెలుగు इंटरफ़ेस विकल्प।",
+  aboutP3: "हम केवल अधिकृत सामग्री प्रकाशित करते हैं। यदि कोई वीडियो लिंक नहीं चल सकता, तो हम साफ़ बताते हैं — कोई नकली प्लेयर नहीं, कोई बेतुका वीडियो नहीं।",
+  startWatching: "देखना शुरू करें",
 };
 
 const te: Dict = {
@@ -202,6 +218,14 @@ const te: Dict = {
   videoUnsupported: "ఈ వీడియో లింక్ ఇక్కడ ప్లే కాదు.",
   videoUnsupportedHelp: "మద్దతు: YouTube, Vimeo, Dailymotion, Google Drive లింక్‌లు, .mp4 / .webm ఫైళ్లు.",
   openSource: "అసలు లింక్ తెరవండి",
+  categories: "వర్గాలు",
+  categoriesDesc: "మీకు ఇష్టమైన శైలిలోకి నేరుగా వెళ్ళండి.",
+  about: "మా గురించి",
+  aboutTagline: "Goku Streaming గురించి",
+  aboutP1: "Goku Streaming అనిమే అభిమానుల నియాన్ ఇల్లు — డ్రాగన్ బాల్, వన్ పీస్, నరుటో మరియు మరెన్నో, మొబైల్, ట్యాబ్లెట్ మరియు డెస్క్‌టాప్ కోసం నిర్మించిన ఒకే వేగవంతమైన లైబ్రరీలో.",
+  aboutP2: "మీకు సరిపోయే విధంగా చూడండి: ప్రతి ఎపిసోడ్ ఆడియో భాష మరియు సబ్‌టైటిల్/డబ్‌గా స్పష్టంగా గుర్తించబడింది, English, हिन्दी మరియు తెలుగు ఇంటర్‌ఫేస్ ఎంపికలతో.",
+  aboutP3: "మేము అధికారిక కంటెంట్ మాత్రమే ప్రచురిస్తాము. వీడియో లింక్ ప్లే కాకపోతే, మేము స్పష్టంగా చెబుతాము — నకిలీ ప్లేయర్లు లేవు, యాదృచ్ఛిక వీడియోలు లేవు.",
+  startWatching: "చూడటం ప్రారంభించండి",
 };
 
 const DICTS: Record<Lang, Dict> = { en, hi, te };

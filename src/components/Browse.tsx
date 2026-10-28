@@ -6,15 +6,18 @@ import { AUDIO_LABEL, useI18n } from "@/lib/i18n";
 
 const sel = "h-10 rounded-xl border border-border bg-card px-3 text-sm";
 
-export function Browse({ title, initialQ = "" }: { title: string; initialQ?: string }) {
+export function Browse({ title, initialQ = "", initialGenre = "" }: { title: string; initialQ?: string; initialGenre?: string }) {
   const { t } = useI18n();
   const { data: anime = [], isLoading } = useQuery({ queryKey: ["anime"], queryFn: listAnime });
   const [q, setQ] = useState(initialQ);
-  const [genre, setGenre] = useState("");
+  const [genre, setGenre] = useState(initialGenre);
   const [lang, setLang] = useState("");
   const [status, setStatus] = useState("");
 
-  const genres = useMemo(() => [...new Set(anime.flatMap((a) => a.genres))].sort(), [anime]);
+  const genres = useMemo(
+    () => [...new Set([...anime.flatMap((a) => a.genres), ...(genre ? [genre] : [])])].sort(),
+    [anime, genre],
+  );
   const results = anime.filter((a) => {
     const text = q.trim().toLowerCase();
     if (text && !`${a.title} ${a.description} ${a.genres.join(" ")}`.toLowerCase().includes(text)) return false;

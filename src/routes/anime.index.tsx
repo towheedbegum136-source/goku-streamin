@@ -3,6 +3,7 @@ import { Browse } from "@/components/Browse";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/anime/")({
+  validateSearch: (s: Record<string, unknown>) => ({ genre: typeof s["genre"] === "string" ? (s["genre"] as string) : "" }),
   head: () => ({
     meta: [
       { title: "Browse anime — Goku Streaming" },
@@ -11,8 +12,11 @@ export const Route = createFileRoute("/anime/")({
       { property: "og:description", content: "Filter anime by genre, audio language and status." },
     ],
   }),
-  component: () => {
-    const { t } = useI18n();
-    return <Browse title={t("browse")} />;
-  },
+  component: AnimeIndex,
 });
+
+function AnimeIndex() {
+  const { genre } = Route.useSearch();
+  const { t } = useI18n();
+  return <Browse key={genre} title={genre ? `${t("browse")}: ${genre}` : t("browse")} initialGenre={genre} />;
+}
