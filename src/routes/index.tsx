@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Play, ArrowRight, Sparkles, Info } from "lucide-react";
+import { Play, ArrowRight, Sparkles, Info, Swords, Compass, Wand2, Laugh, Heart, Rocket, Tag } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import { Button } from "@/components/ui/button";
 import { AnimeCard } from "@/components/AnimeCard";
@@ -63,6 +63,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <Categories />
 
       <section className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-6 flex items-end justify-between">
