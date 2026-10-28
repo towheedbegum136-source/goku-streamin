@@ -53,11 +53,11 @@ function Index() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="hero" size="xl">
                 {featured ? <Link to="/anime/$id" params={{ id: featured.id }}><Play className="fill-current" />{t("watchNow")}</Link>
-                  : <Link to="/anime"><Play className="fill-current" />{t("watchNow")}</Link>}
+                  : <Link to="/anime" search={{ genre: "" }}><Play className="fill-current" />{t("watchNow")}</Link>}
               </Button>
               <Button asChild variant="glass" size="xl">
                 {featured ? <Link to="/anime/$id" params={{ id: featured.id }}><Info />{t("details")}</Link>
-                  : <Link to="/anime">{t("browseAll")}<ArrowRight /></Link>}
+                  : <Link to="/anime" search={{ genre: "" }}>{t("browseAll")}<ArrowRight /></Link>}
               </Button>
             </div>
           </div>
@@ -69,7 +69,7 @@ function Index() {
       <section className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-6 flex items-end justify-between">
           <h2 className="flex items-center gap-3 text-3xl font-extrabold"><span className="h-8 w-1.5 rounded bg-brand" />{t("latest")}</h2>
-          <Link to="/anime" className="flex items-center gap-1 text-sm text-primary">{t("browseAll")} <ArrowRight className="size-4" /></Link>
+          <Link to="/anime" search={{ genre: "" }} className="flex items-center gap-1 text-sm text-primary">{t("browseAll")} <ArrowRight className="size-4" /></Link>
         </div>
         {isLoading ? (
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">

@@ -46,7 +46,7 @@ function About() {
       </div>
       <div className="mt-12 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <Button asChild variant="hero" size="xl">
-          <Link to="/anime"><Play className="fill-current" />{t("startWatching")}</Link>
+          <Link to="/anime" search={{ genre: "" }}><Play className="fill-current" />{t("startWatching")}</Link>
         </Button>
         <Button asChild variant="glass" size="xl">
           <Link to="/signup">{t("createAccount")}</Link>
