@@ -6,11 +6,11 @@ import { AUDIO_LABEL, useI18n } from "@/lib/i18n";
 
 const sel = "h-10 rounded-xl border border-border bg-card px-3 text-sm";
 
-export function Browse({ title, initialQ = "" }: { title: string; initialQ?: string }) {
+export function Browse({ title, initialQ = "", initialGenre = "" }: { title: string; initialQ?: string; initialGenre?: string }) {
   const { t } = useI18n();
   const { data: anime = [], isLoading } = useQuery({ queryKey: ["anime"], queryFn: listAnime });
   const [q, setQ] = useState(initialQ);
-  const [genre, setGenre] = useState("");
+  const [genre, setGenre] = useState(initialGenre);
   const [lang, setLang] = useState("");
   const [status, setStatus] = useState("");
 
