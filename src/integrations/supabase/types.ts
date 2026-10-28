@@ -106,6 +106,30 @@ export type Database = {
           },
         ]
       }
+      site_settings: {
+        Row: {
+          footer_note: string
+          id: number
+          site_name: string
+          tagline: string
+          updated_at: string
+        }
+        Insert: {
+          footer_note?: string
+          id?: number
+          site_name?: string
+          tagline?: string
+          updated_at?: string
+        }
+        Update: {
+          footer_note?: string
+          id?: number
+          site_name?: string
+          tagline?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
