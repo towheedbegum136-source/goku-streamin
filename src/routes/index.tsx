@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Play, ArrowRight, Sparkles, Info, Swords, Compass, Wand2, Laugh, Heart, Rocket, Tag } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import homeVideo from "@/assets/your-name-visuals.mp4.asset.json";
+import homeVideoWebm from "@/assets/your-name-visuals.webm.asset.json";
 import homeVideoPoster from "@/assets/your-name-visuals-poster.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { AnimeCard } from "@/components/AnimeCard";
@@ -80,7 +81,8 @@ function Index() {
           poster={homeVideoPoster.url}
           className="aspect-video w-full rounded-lg bg-background object-contain"
         >
-          <source src={homeVideo.url} type="video/mp4" />
+          <source src={homeVideoWebm.url} type='video/webm; codecs="vp9, opus"' />
+          <source src={homeVideo.url} type='video/mp4; codecs="avc1.64001f, mp4a.40.2"' />
           <a href={homeVideo.url}>Your Name — Visuals</a>
         </video>
       </section>
