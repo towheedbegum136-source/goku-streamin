@@ -1,10 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Play, ArrowRight, Sparkles, Info, Swords, Compass, Wand2, Laugh, Heart, Rocket, Tag } from "lucide-react";
-import hero from "@/assets/hero.jpg";
-import homeVideo from "@/assets/your-name-visuals.mp4.asset.json";
-import homeVideoWebm from "@/assets/your-name-visuals.webm.asset.json";
-import homeVideoPoster from "@/assets/your-name-visuals-poster.jpg.asset.json";
+import homeVideo from "@/assets/hero-your-name-upload.mp4.asset.json";
+import homeVideoWebm from "@/assets/hero-your-name-upload.webm.asset.json";
 import { Button } from "@/components/ui/button";
 import { AnimeCard } from "@/components/AnimeCard";
 import { listAnime } from "@/lib/anime";
@@ -34,8 +32,19 @@ function Index() {
   return (
     <>
       <section className="relative isolate min-h-[88vh] overflow-hidden">
-        <img src={hero} alt="Goku, Luffy and Naruto under a purple moonlit sky" width={1920} height={1088}
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]" />
+        <video
+          aria-label="Your Name hero background video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
+        >
+          <source src={homeVideo.url} type="video/mp4" />
+          <source src={homeVideoWebm.url} type="video/webm" />
+        </video>
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-background/50" />
         <div className="absolute inset-0 -z-10 bg-hero-side" />
         <div className="absolute inset-0 -z-10 bg-hero-fade" />
         <div className="mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 md:px-6 md:justify-center md:pb-10">
@@ -65,18 +74,6 @@ function Index() {
                   : <Link to="/anime" search={{ genre: "" }}>{t("browseAll")}<ArrowRight /></Link>}
               </Button>
             </div>
-            <video
-              aria-label="Your Name visuals video"
-              controls
-              playsInline
-              preload="none"
-              poster={homeVideoPoster.url}
-              className="mt-8 aspect-video w-full rounded-lg border border-border bg-background object-contain"
-            >
-              <source src={homeVideoWebm.url} type='video/webm; codecs="vp9, opus"' />
-              <source src={homeVideo.url} type='video/mp4; codecs="avc1.64001f, mp4a.40.2"' />
-              <a href={homeVideo.url}>Your Name — Visuals</a>
-            </video>
           </div>
         </div>
       </section>
