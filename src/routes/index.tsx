@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Play, ArrowRight, Sparkles, Info, Swords, Compass, Wand2, Laugh, Heart, Rocket, Tag } from "lucide-react";
 import hero from "@/assets/hero.jpg";
+import homeVideo from "@/assets/your-name-visuals.mp4.asset.json";
+import homeVideoPoster from "@/assets/your-name-visuals-poster.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { AnimeCard } from "@/components/AnimeCard";
 import { listAnime } from "@/lib/anime";
@@ -12,9 +14,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Goku Streaming — Your anime. Full power." },
-      { name: "description", content: "Watch Dragon Ball, One Piece, Naruto and more on Goku Streaming, in English, Hindi and Telugu." },
+      { name: "description", content: "Explore the Goku Streaming anime library, available episode languages, and Your Name visuals." },
       { property: "og:title", content: "Goku Streaming — Your anime. Full power." },
       { property: "og:description", content: "Your favourite anime in one neon-lit library." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -62,6 +66,23 @@ function Index() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section aria-labelledby="home-video-title" className="mx-auto max-w-7xl px-4 pt-10 md:px-6">
+        <h2 id="home-video-title" className="mb-6 flex items-center gap-3 text-2xl font-extrabold md:text-3xl">
+          <span className="h-8 w-1.5 shrink-0 rounded bg-brand" />Your Name — Visuals
+        </h2>
+        <video
+          aria-label="Your Name visuals video"
+          controls
+          playsInline
+          preload="none"
+          poster={homeVideoPoster.url}
+          className="aspect-video w-full rounded-lg bg-background object-contain"
+        >
+          <source src={homeVideo.url} type="video/mp4" />
+          <a href={homeVideo.url}>Your Name — Visuals</a>
+        </video>
       </section>
 
       <Categories />
