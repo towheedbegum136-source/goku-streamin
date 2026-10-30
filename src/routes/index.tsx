@@ -38,7 +38,7 @@ function Index() {
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]" />
         <div className="absolute inset-0 -z-10 bg-hero-side" />
         <div className="absolute inset-0 -z-10 bg-hero-fade" />
-        <div className="mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-4 pb-20 pt-40 md:px-6 md:justify-center md:pb-10">
+        <div className="mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 md:px-6 md:justify-center md:pb-10">
           <div className="max-w-xl animate-rise">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary">
               <Sparkles className="size-4" /> {t("heroTag")}
@@ -65,26 +65,20 @@ function Index() {
                   : <Link to="/anime" search={{ genre: "" }}>{t("browseAll")}<ArrowRight /></Link>}
               </Button>
             </div>
+            <video
+              aria-label="Your Name visuals video"
+              controls
+              playsInline
+              preload="none"
+              poster={homeVideoPoster.url}
+              className="mt-8 aspect-video w-full rounded-lg border border-border bg-background object-contain"
+            >
+              <source src={homeVideoWebm.url} type='video/webm; codecs="vp9, opus"' />
+              <source src={homeVideo.url} type='video/mp4; codecs="avc1.64001f, mp4a.40.2"' />
+              <a href={homeVideo.url}>Your Name — Visuals</a>
+            </video>
           </div>
         </div>
-      </section>
-
-      <section aria-labelledby="home-video-title" className="mx-auto max-w-7xl px-4 pt-10 md:px-6">
-        <h2 id="home-video-title" className="mb-6 flex items-center gap-3 text-2xl font-extrabold md:text-3xl">
-          <span className="h-8 w-1.5 shrink-0 rounded bg-brand" />Your Name — Visuals
-        </h2>
-        <video
-          aria-label="Your Name visuals video"
-          controls
-          playsInline
-          preload="none"
-          poster={homeVideoPoster.url}
-          className="aspect-video w-full rounded-lg bg-background object-contain"
-        >
-          <source src={homeVideoWebm.url} type='video/webm; codecs="vp9, opus"' />
-          <source src={homeVideo.url} type='video/mp4; codecs="avc1.64001f, mp4a.40.2"' />
-          <a href={homeVideo.url}>Your Name — Visuals</a>
-        </video>
       </section>
 
       <Categories />
