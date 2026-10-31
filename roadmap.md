@@ -1,4 +1,7 @@
 # Goku Streaming roadmap
+- [ ] Connect official artwork provider
+- [ ] Automatically match and save artwork/type for new entries only
+- [ ] Test exact matching, safe fallbacks, preservation, and admin flow
 - [x] Repair anime posters and wallpapers with non-logo fallback; verify phone and desktop
 - [x] Replace hero footage with exact uploaded Goku video; verify playback and preserve existing design
 - [x] Branding, theme, hero banner (Goku/Luffy/Naruto)
