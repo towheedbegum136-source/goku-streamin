@@ -7,6 +7,7 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "About — Goku Streaming" },
       { name: "description", content: "Goku Streaming is a neon-lit home for anime fans — Dragon Ball, One Piece, Naruto and more, in English, Hindi and Telugu." },
       { property: "og:title", content: "About — Goku Streaming" },

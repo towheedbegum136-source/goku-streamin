@@ -10,6 +10,8 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Reset password — Goku Streaming" },
       { name: "description", content: "Choose a new password for Goku Streaming." },
       { property: "og:title", content: "Reset password — Goku Streaming" },

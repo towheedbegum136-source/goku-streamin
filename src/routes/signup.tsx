@@ -13,6 +13,8 @@ import { googleSignIn } from "./login";
 export const Route = createFileRoute("/signup")({
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Sign up — Goku Streaming" },
       { name: "description", content: "Create your free Goku Streaming account." },
       { property: "og:title", content: "Sign up — Goku Streaming" },

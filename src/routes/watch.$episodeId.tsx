@@ -11,6 +11,8 @@ import { VersionBadge } from "@/components/AnimeCard";
 export const Route = createFileRoute("/watch/$episodeId")({
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Watch — Goku Streaming" },
       { name: "description", content: "Watch this episode on Goku Streaming." },
       { property: "og:title", content: "Watch — Goku Streaming" },

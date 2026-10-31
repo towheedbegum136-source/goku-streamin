@@ -26,6 +26,8 @@ export const Route = createFileRoute("/_authenticated/admin")({
   },
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Admin Dashboard — Goku Streaming" },
       { name: "description", content: "Manage anime and episodes." },
       { property: "og:title", content: "Admin Dashboard — Goku Streaming" },

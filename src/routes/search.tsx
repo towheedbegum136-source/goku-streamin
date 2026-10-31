@@ -6,6 +6,8 @@ export const Route = createFileRoute("/search")({
   validateSearch: (s: Record<string, unknown>) => ({ q: typeof s["q"] === "string" ? (s["q"] as string) : "" }),
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Search — Goku Streaming" },
       { name: "description", content: "Search anime on Goku Streaming." },
       { property: "og:title", content: "Search — Goku Streaming" },

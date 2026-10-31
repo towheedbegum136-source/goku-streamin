@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/_authenticated/account")({
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "My account — Goku Streaming" },
       { name: "description", content: "Your Goku Streaming account." },
       { property: "og:title", content: "My account — Goku Streaming" },

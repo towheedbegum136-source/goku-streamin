@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/anime/$id")({
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Anime details — Goku Streaming" },
       { name: "description", content: "Episodes, languages and details on Goku Streaming." },
       { property: "og:title", content: "Anime details — Goku Streaming" },
