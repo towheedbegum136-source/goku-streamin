@@ -6,12 +6,14 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Anime, Episode } from "@/lib/anime";
 import { useI18n } from "@/lib/i18n";
 import { VersionBadge } from "@/components/AnimeCard";
-import { LogoMark } from "@/components/Logo";
+import { AnimeImage } from "@/components/AnimeImage";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/anime/$id")({
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Anime details — Goku Streaming" },
       { name: "description", content: "Episodes, languages and details on Goku Streaming." },
       { property: "og:title", content: "Anime details — Goku Streaming" },
@@ -53,14 +55,11 @@ function AnimeDetails() {
   return (
     <div>
       <div className="relative isolate overflow-hidden">
-        {(data.banner_url || data.thumbnail_url) && (
-          <img src={data.banner_url || data.thumbnail_url!} alt="" className="absolute inset-0 -z-20 h-full w-full scale-110 object-cover opacity-40 blur-md" />
-        )}
+        <AnimeImage src={data.banner_url || data.thumbnail_url} alt="" loading="eager" className="absolute inset-0 -z-20 h-full w-full scale-110 object-cover opacity-40 blur-md" />
         <div className="absolute inset-0 -z-10 bg-hero-fade" />
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 md:flex-row md:px-6">
           <div className="w-48 shrink-0 overflow-hidden rounded-2xl border border-border bg-card shadow-glow md:w-64">
-            {data.thumbnail_url ? <img src={data.thumbnail_url} alt={data.title} className="aspect-[3/4] w-full object-cover" />
-              : <div className="flex aspect-[3/4] items-center justify-center"><LogoMark size={72} /></div>}
+            <AnimeImage src={data.thumbnail_url} alt={data.title} loading="eager" className="aspect-[3/4] w-full object-cover" />
           </div>
           <div className="space-y-4">
             <h1 className="text-4xl font-black md:text-5xl">{data.title}</h1>

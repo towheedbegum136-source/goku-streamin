@@ -17,6 +17,8 @@ export const Route = createFileRoute("/_authenticated/settings")({
   },
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Site Settings — Goku Streaming" },
       { name: "description", content: "Edit the Goku Streaming site name and settings." },
       { property: "og:title", content: "Site Settings — Goku Streaming" },

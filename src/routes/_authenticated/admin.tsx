@@ -8,6 +8,7 @@ import { AUDIO_LANGS, listAnime, type Anime, type Episode } from "@/lib/anime";
 import { parseVideoUrl } from "@/lib/video";
 import { AUDIO_LABEL } from "@/lib/i18n";
 import { LogoMark } from "@/components/Logo";
+import { AnimeImage } from "@/components/AnimeImage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,6 +26,8 @@ export const Route = createFileRoute("/_authenticated/admin")({
   },
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Admin Dashboard — Goku Streaming" },
       { name: "description", content: "Manage anime and episodes." },
       { property: "og:title", content: "Admin Dashboard — Goku Streaming" },
@@ -93,7 +96,7 @@ function Admin() {
         {anime.length === 0 && <p className="p-10 text-center text-muted-foreground">No anime yet. Click “Add anime” to start.</p>}
         {anime.map((a) => (
           <div key={a.id} className="flex flex-wrap items-center gap-4 border-b border-border bg-card p-4 last:border-0">
-            <div className="h-16 w-12 shrink-0 overflow-hidden rounded-md bg-muted">{a.thumbnail_url && <img src={a.thumbnail_url} alt="" className="h-full w-full object-cover" />}</div>
+            <div className="h-16 w-12 shrink-0 overflow-hidden rounded-md bg-muted"><AnimeImage src={a.thumbnail_url} alt={a.title} className="h-full w-full object-cover" /></div>
             <div className="min-w-0 flex-1">
               <p className="font-semibold">{a.title}</p>
               <p className="text-xs text-muted-foreground">{a.episodes.length} episodes · {a.status} · {a.published ? "Published" : "Draft"}{a.featured ? " · Featured" : ""}</p>

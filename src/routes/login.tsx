@@ -13,6 +13,8 @@ export const Route = createFileRoute("/login")({
   validateSearch: (s: Record<string, unknown>): { redirect?: string | undefined } => ({ redirect: typeof s["redirect"] === "string" ? s["redirect"] : undefined }),
   head: () => ({
     meta: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
       { title: "Login — Goku Streaming" },
       { name: "description", content: "Log in to your Goku Streaming account." },
       { property: "og:title", content: "Login — Goku Streaming" },
