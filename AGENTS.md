@@ -13,3 +13,4 @@
 - Episode audio language/version live on episodes; anime "available versions" are derived from published episodes. Why: never advertise dubs that don't exist.
 - Video links go through `src/lib/video.ts` parseVideoUrl; extend it to support new providers. Why: one place decides what can embed.
 - Home-page showcase video uses CDN asset pointers and a stable native background video element, without episode records or interaction-driven remounts. Why: showcase footage stays separate from the catalog and plays continuously during homepage interactions.
+- Anime posters, wallpapers, and admin thumbnails use the shared AnimeImage component with a non-logo artwork fallback. Why: every image display recovers from missing or failed sources without changing catalog records.

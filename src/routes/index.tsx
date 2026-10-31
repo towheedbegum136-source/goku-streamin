@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Play, ArrowRight, Sparkles, Info, Swords, Compass, Wand2, Laugh, Heart, Rocket, Tag } from "lucide-react";
-import homeVideo from "@/assets/hero-your-name-upload.mp4.asset.json";
-import homeVideoWebm from "@/assets/hero-your-name-upload.webm.asset.json";
+import homeVideo from "@/assets/hero-goku-upload.mp4.asset.json";
+import homeVideoWebm from "@/assets/hero-goku-upload.webm.asset.json";
+import homePoster from "@/assets/hero-goku-poster.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { AnimeCard } from "@/components/AnimeCard";
 import { listAnime } from "@/lib/anime";
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Goku Streaming — Your anime. Full power." },
-      { name: "description", content: "Explore the Goku Streaming anime library, available episode languages, and Your Name visuals." },
+      { name: "description", content: "Explore the Goku Streaming anime library, available episode languages, and Goku visuals." },
       { property: "og:title", content: "Goku Streaming — Your anime. Full power." },
       { property: "og:description", content: "Your favourite anime in one neon-lit library." },
       { property: "og:type", content: "website" },
@@ -33,12 +34,13 @@ function Index() {
     <>
       <section className="relative isolate min-h-[88vh] overflow-hidden">
         <video
-          aria-label="Your Name hero background video"
+          aria-label="Goku hero background video"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
+          poster={homePoster.url}
           className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
         >
           <source src={homeVideo.url} type="video/mp4" />

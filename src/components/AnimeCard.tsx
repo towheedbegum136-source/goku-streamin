@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { availableVersions, type AnimeWithEps } from "@/lib/anime";
 import { AUDIO_LABEL, useI18n } from "@/lib/i18n";
-import { LogoMark } from "./Logo";
+import { AnimeImage } from "./AnimeImage";
 
 export function VersionBadge({ audio, version }: { audio: string; version: string }) {
   const { t } = useI18n();
@@ -18,11 +18,7 @@ export function AnimeCard({ anime }: { anime: AnimeWithEps }) {
     <Link to="/anime/$id" params={{ id: anime.id }}
       className="group block overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-glow">
       <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-        {anime.thumbnail_url ? (
-          <img src={anime.thumbnail_url} alt={anime.title} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-        ) : (
-          <div className="flex h-full items-center justify-center"><LogoMark size={64} /></div>
-        )}
+        <AnimeImage src={anime.thumbnail_url} alt={anime.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
         {!anime.published && <span className="absolute left-2 top-2 rounded bg-destructive px-2 py-0.5 text-xs font-bold">Draft</span>}
       </div>
       <div className="space-y-2 p-3">
