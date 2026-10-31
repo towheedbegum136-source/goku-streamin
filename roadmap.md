@@ -1,6 +1,6 @@
 # Goku Streaming roadmap
-- [ ] Repair anime posters and wallpapers with non-logo fallback; verify phone and desktop
-- [ ] Replace hero footage with exact uploaded Goku video; verify playback and preserve existing design
+- [x] Repair anime posters and wallpapers with non-logo fallback; verify phone and desktop
+- [x] Replace hero footage with exact uploaded Goku video; verify playback and preserve existing design
 - [x] Branding, theme, hero banner (Goku/Luffy/Naruto)
 - [x] Home page
 - [x] Uploaded Your Name video on the home page; retain the existing hero banner
