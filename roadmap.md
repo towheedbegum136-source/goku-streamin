@@ -1,8 +1,8 @@
 # Goku Streaming roadmap
-- [ ] Inspect both projects and select safe improvements
-- [ ] Merge navigation/catalog/design improvements while preserving admin and exact hero video
-- [ ] Add automatic artwork where available and manual URL/upload fallback
-- [ ] Verify admin, hero, navigation, filters, and layouts on phone and desktop
+- [ ] Inspect both projects and select safe improvements — blocked: second project inaccessible; source ZIP required
+- [ ] Merge navigation/catalog/design improvements while preserving admin and exact hero video — blocked: second project source required
+- [ ] Add automatic artwork where available and manual URL/upload fallback — blocked: inspect second project source first; TMDB connection previously declined
+- [ ] Verify admin, hero, navigation, filters, and layouts on phone and desktop — blocked: merge awaiting source
 - [ ] Connect official artwork provider — blocked: TMDB connection declined; awaiting user's preferred alternative
 - [ ] Automatically match and save artwork/type for new entries only — blocked: artwork provider connection required
 - [ ] Test exact matching, safe fallbacks, preservation, and admin flow — blocked: provider connection and implementation required
