@@ -1,0 +1,18 @@
+{
+  "source": "goku-striming-source.zip",
+  "mode": "selective merge into existing Goku Streaming",
+  "capabilities": [
+    {"capability":"code","source":"TanStack React archive","outcome":"Merge genre browsing, featured shelf, filter reset and video recovery","status":"in_progress","next_action":"Implement and verify against current catalog"},
+    {"capability":"schema","source":"Old categories/videos schema","outcome":"Use current Cloud anime/episodes schema; do not replace admin schema","status":"preserved","next_action":null},
+    {"capability":"records","source":"No record exports bundled","outcome":"Current records preserved; old records not imported","status":"pending","next_action":"Upload old project's application records as CSV/JSON if wanted"},
+    {"capability":"auth identities","source":"Old Cloud auth hooks, no users exported","outcome":"Keep current auth and sole admin; old users not imported","status":"pending","next_action":"Provide user/profile export if old users must be transferred"},
+    {"capability":"authorization","source":"Old admin allowlist schema","outcome":"Retain current admin-only RLS, never import old grants","status":"preserved","next_action":"Verify current admin access without altering roles"},
+    {"capability":"uploaded file bytes","source":"Four bundled static illustrations; no uploaded-video bytes","outcome":"Keep existing correct posters and exact Goku video; old illustrations not needed","status":"preserved","next_action":null},
+    {"capability":"external providers","source":"YouTube/Vimeo/direct files","outcome":"Retain existing broader provider support","status":"in_progress","next_action":"Merge compatible URL formats and direct-file recovery"},
+    {"capability":"public endpoints and callbacks","source":"Inspection pending","outcome":"Do not replace current runtime/auth callbacks","status":"in_progress","next_action":"Finish call-site audit"},
+    {"capability":"webhooks and schedules","source":"Inspection pending","outcome":"No removal planned","status":"in_progress","next_action":"Finish call-site audit"},
+    {"capability":"secrets","source":"Only migration variable detected","outcome":"No old credentials copied or requested","status":"preserved","next_action":null},
+    {"capability":"cutover","source":"Existing current project","outcome":"No deployment or old-project changes requested","status":"not_required","next_action":null},
+    {"capability":"verification","source":"Current preview and tests","outcome":"Check real catalog, hero continuity and admin preservation","status":"in_progress","next_action":"Run targeted tests and browser checks"}
+  ]
+}
