@@ -16,10 +16,10 @@ export function parseVideoUrl(raw: string): ParsedVideo {
   }
   const host = url.hostname.replace(/^www\.|^m\./, "");
 
-  if (host === "youtube.com" || host === "youtube-nocookie.com") {
+  if (host === "youtube.com" || host === "youtube-nocookie.com" || host === "music.youtube.com") {
     const id =
       url.searchParams.get("v") ??
-      url.pathname.match(/^\/(?:embed|shorts|live)\/([\w-]{6,})/)?.[1];
+      url.pathname.match(/^\/(?:embed|shorts|live|v)\/([\w-]{6,})/)?.[1];
     if (id) return { kind: "iframe", provider: "YouTube", src: `https://www.youtube-nocookie.com/embed/${id}` };
   }
   if (host === "youtu.be") {

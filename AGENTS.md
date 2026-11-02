@@ -14,3 +14,5 @@
 - Video links go through `src/lib/video.ts` parseVideoUrl; extend it to support new providers. Why: one place decides what can embed.
 - Home-page showcase video uses CDN asset pointers and a stable native background video element, without episode records or interaction-driven remounts. Why: showcase footage stays separate from the catalog and plays continuously during homepage interactions.
 - Anime posters, wallpapers, and admin thumbnails use the shared AnimeImage component with a non-logo artwork fallback. Why: every image display recovers from missing or failed sources without changing catalog records.
+- Catalog filtering and featured selection use src/lib/catalog.ts; language availability requires published episodes. Why: merged browsing features share tested rules without changing records.
+- EpisodeVideo handles episode playback recovery, keyed by episode ID and URL; never use it for the home background. Why: retry state resets between episodes without restarting the showcase video.
