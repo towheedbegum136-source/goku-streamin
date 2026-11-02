@@ -52,6 +52,7 @@ export function SiteHeader() {
     <>
       <Link to="/" className="hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }} onClick={() => setOpen(false)}>{t("home")}</Link>
       <Link to="/anime" search={{ genre: "" }} className="hover:text-foreground" activeProps={{ className: "text-foreground" }} onClick={() => setOpen(false)}>{t("browse")}</Link>
+      <Link to="/genres" className="hover:text-foreground" activeProps={{ className: "text-foreground" }} onClick={() => setOpen(false)}>{t("genres")}</Link>
       <Link to="/about" className="hover:text-foreground" activeProps={{ className: "text-foreground" }} onClick={() => setOpen(false)}>{t("about")}</Link>
       {isAdmin && (
         <Link to="/admin" className="flex items-center gap-1 hover:text-foreground" onClick={() => setOpen(false)}>
@@ -91,9 +92,9 @@ export function SiteHeader() {
           </div>
         </form>
         <div className="hidden items-center gap-3 lg:flex"><LanguageSelect />{authButtons}</div>
-        <button className="ml-auto md:ml-0 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
+        <Button variant="ghost" size="icon" className="ml-auto md:ml-0 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
           {open ? <X className="size-7" /> : <Menu className="size-7" />}
-        </button>
+        </Button>
       </div>
       {open && (
         <div className="border-t border-border px-4 pb-6 pt-4 lg:hidden">

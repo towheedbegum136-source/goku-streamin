@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeft, ChevronRight, AlertTriangle, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Anime, Episode } from "@/lib/anime";
-import { parseVideoUrl } from "@/lib/video";
+import { EpisodeVideo } from "@/components/EpisodeVideo";
 import { useI18n } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { VersionBadge } from "@/components/AnimeCard";
@@ -45,7 +45,6 @@ function Watch() {
   const idx = siblings.findIndex((s) => s.id === ep.id);
   const prev = idx > 0 ? siblings[idx - 1] : null;
   const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : null;
-  const video = parseVideoUrl(ep.video_url);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6 md:px-6">
@@ -54,18 +53,7 @@ function Watch() {
       </Link>
       <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-glow">
         <div className="aspect-video bg-background">
-          {video.kind === "iframe" ? (
-            <iframe src={video.src} title={ep.title} className="h-full w-full" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
-          ) : video.kind === "file" ? (
-            <video src={video.src} controls className="h-full w-full" />
-          ) : (
-            <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
-              <AlertTriangle className="size-10 text-destructive" />
-              <p className="font-semibold">{t("videoUnsupported")}</p>
-              <p className="max-w-md text-sm text-muted-foreground">{t("videoUnsupportedHelp")}</p>
-              <a href={ep.video_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-primary">{t("openSource")} <ExternalLink className="size-4" /></a>
-            </div>
-          )}
+          <EpisodeVideo key={`${ep.id}:${ep.video_url}`} url={ep.video_url} title={ep.title} />
         </div>
       </div>
       <div className="mt-5 space-y-2">

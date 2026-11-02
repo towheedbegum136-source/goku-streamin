@@ -7,6 +7,7 @@ import homePoster from "@/assets/hero-goku-poster.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { AnimeCard } from "@/components/AnimeCard";
 import { listAnime } from "@/lib/anime";
+import { featuredCatalog } from "@/lib/catalog";
 import { useI18n } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
 
@@ -29,6 +30,7 @@ function Index() {
   const { isAdmin } = useAuth();
   const { data: anime = [], isLoading } = useQuery({ queryKey: ["anime"], queryFn: listAnime });
   const featured = anime.find((a) => a.featured && a.published) ?? anime.find((a) => a.published);
+  const featuredAnime = featuredCatalog(anime);
 
   return (
     <>
@@ -81,6 +83,13 @@ function Index() {
       </section>
 
       <Categories />
+
+      {featuredAnime.length > 0 && <section className="mx-auto mb-12 max-w-7xl px-4 md:px-6">
+        <h2 className="mb-6 flex items-center gap-3 text-3xl font-extrabold"><span className="h-8 w-1.5 rounded bg-brand" />{t("featured")}</h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {featuredAnime.slice(0, 5).map((a) => <AnimeCard key={a.id} anime={a} />)}
+        </div>
+      </section>}
 
       <section className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-6 flex items-end justify-between">

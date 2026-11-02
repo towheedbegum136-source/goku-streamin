@@ -12,6 +12,11 @@ describe("parseVideoUrl", () => {
   it("embeds youtu.be short links", () => {
     expect(parseVideoUrl("https://youtu.be/abcDEF12345").kind).toBe("iframe");
   });
+  it("preserves old-project music and legacy YouTube link support", () => {
+    for (const url of ["https://music.youtube.com/watch?v=abcDEF12345", "https://youtube.com/v/abcDEF12345"]) {
+      expect(parseVideoUrl(url)).toMatchObject({ kind: "iframe", src: "https://www.youtube-nocookie.com/embed/abcDEF12345" });
+    }
+  });
   it("embeds Google Drive share links as preview", () => {
     const r = parseVideoUrl("https://drive.google.com/file/d/1AbC_xyz/view?usp=sharing");
     expect(r).toMatchObject({ kind: "iframe", src: "https://drive.google.com/file/d/1AbC_xyz/preview" });
