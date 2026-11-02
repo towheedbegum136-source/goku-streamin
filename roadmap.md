@@ -1,5 +1,5 @@
 # Goku Streaming roadmap
-- [x] Inspect both projects and select safe improvements from uploaded source ZIP
+- [x] Inspect both projects and select safe improvements from uploaded source ZIP, including the second upload
 - [ ] Merge genre navigation, featured shelf, filter reset and video recovery while preserving admin and exact hero video
 - [ ] Add automatic artwork where available and manual URL/upload fallback — blocked: inspect second project source first; TMDB connection previously declined
 - [ ] Verify admin, hero, navigation, filters, and layouts on phone and desktop
