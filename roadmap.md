@@ -1,4 +1,6 @@
 # Goku Streaming roadmap
+- [x] Add branded manifest/icons, preview-safe non-caching service worker configuration, and native install popup; simulated acceptance/dismissal, standalone suppression, icons, and phone/desktop verified
+- [ ] Verify real Android native installation and generated service worker on updated published site — blocked: publication and supported Android device required
 - [x] Inspect both projects and select safe improvements from uploaded source ZIP, including the second upload
 - [ ] Merge genre navigation, featured shelf, filter reset and video recovery while preserving admin and exact hero video
 - [ ] Add automatic artwork where available and manual URL/upload fallback — blocked: inspect second project source first; TMDB connection previously declined
