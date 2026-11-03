@@ -18,7 +18,13 @@ export default defineConfig({
       devOptions: { enabled: false },
       workbox: {
         globPatterns: [],
-        runtimeCaching: [],
+        // Workbox requires a route or precache entry to generate a worker.
+        // NetworkOnly satisfies that requirement without storing any responses.
+        runtimeCaching: [{
+          urlPattern: ({ url, sameOrigin }) => sameOrigin && !url.pathname.startsWith("/~oauth"),
+          handler: "NetworkOnly",
+          method: "GET",
+        }],
         navigateFallback: null,
         navigateFallbackDenylist: [/^\/~oauth/],
         cleanupOutdatedCaches: false,
