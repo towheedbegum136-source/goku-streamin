@@ -1,4 +1,5 @@
 # Goku Streaming roadmap
+- [ ] Add branded manifest/icons, preview-safe service worker, and native install popup; verify suppression and installation flow
 - [x] Inspect both projects and select safe improvements from uploaded source ZIP, including the second upload
 - [ ] Merge genre navigation, featured shelf, filter reset and video recovery while preserving admin and exact hero video
 - [ ] Add automatic artwork where available and manual URL/upload fallback — blocked: inspect second project source first; TMDB connection previously declined
