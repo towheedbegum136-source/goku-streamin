@@ -12,8 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as DownloadsRouteImport } from './routes/downloads'
 import { Route as GenresRouteImport } from './routes/genres'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MeRouteImport } from './routes/me'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SignupRouteImport } from './routes/signup'
@@ -22,6 +24,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AnimeIndexRouteImport } from './routes/anime.index'
 import { Route as AnimeIdRouteImport } from './routes/anime.$id'
+import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as WatchEpisodeIdRouteImport } from './routes/watch.$episodeId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -38,6 +41,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DownloadsRoute = DownloadsRouteImport.update({
+  id: '/downloads',
+  path: '/downloads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GenresRoute = GenresRouteImport.update({
   id: '/genres',
   path: '/genres',
@@ -46,6 +54,11 @@ const GenresRoute = GenresRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeRoute = MeRouteImport.update({
+  id: '/me',
+  path: '/me',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -88,6 +101,11 @@ const AnimeIdRoute = AnimeIdRouteImport.update({
   path: '/anime/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategorySlugRoute = CategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WatchEpisodeIdRoute = WatchEpisodeIdRouteImport.update({
   id: '/watch/$episodeId',
   path: '/watch/$episodeId',
@@ -97,8 +115,10 @@ const WatchEpisodeIdRoute = WatchEpisodeIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/downloads': typeof DownloadsRoute
   '/genres': typeof GenresRoute
   '/login': typeof LoginRoute
+  '/me': typeof MeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
@@ -106,14 +126,17 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/anime/$id': typeof AnimeIdRoute
+  '/category/$slug': typeof CategorySlugRoute
   '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime/': typeof AnimeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/downloads': typeof DownloadsRoute
   '/genres': typeof GenresRoute
   '/login': typeof LoginRoute
+  '/me': typeof MeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
@@ -121,6 +144,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/anime/$id': typeof AnimeIdRoute
+  '/category/$slug': typeof CategorySlugRoute
   '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime': typeof AnimeIndexRoute
 }
@@ -129,8 +153,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/downloads': typeof DownloadsRoute
   '/genres': typeof GenresRoute
   '/login': typeof LoginRoute
+  '/me': typeof MeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/search': typeof SearchRoute
   '/signup': typeof SignupRoute
@@ -138,6 +164,7 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/anime/$id': typeof AnimeIdRoute
+  '/category/$slug': typeof CategorySlugRoute
   '/watch/$episodeId': typeof WatchEpisodeIdRoute
   '/anime/': typeof AnimeIndexRoute
 }
@@ -146,8 +173,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/downloads'
     | '/genres'
     | '/login'
+    | '/me'
     | '/reset-password'
     | '/search'
     | '/signup'
@@ -155,14 +184,17 @@ export interface FileRouteTypes {
     | '/admin'
     | '/settings'
     | '/anime/$id'
+    | '/category/$slug'
     | '/watch/$episodeId'
     | '/anime/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/downloads'
     | '/genres'
     | '/login'
+    | '/me'
     | '/reset-password'
     | '/search'
     | '/signup'
@@ -170,6 +202,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/settings'
     | '/anime/$id'
+    | '/category/$slug'
     | '/watch/$episodeId'
     | '/anime'
   id:
@@ -177,8 +210,10 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/about'
+    | '/downloads'
     | '/genres'
     | '/login'
+    | '/me'
     | '/reset-password'
     | '/search'
     | '/signup'
@@ -186,6 +221,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/_authenticated/settings'
     | '/anime/$id'
+    | '/category/$slug'
     | '/watch/$episodeId'
     | '/anime/'
   fileRoutesById: FileRoutesById
@@ -194,12 +230,15 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  DownloadsRoute: typeof DownloadsRoute
   GenresRoute: typeof GenresRoute
   LoginRoute: typeof LoginRoute
+  MeRoute: typeof MeRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SearchRoute: typeof SearchRoute
   SignupRoute: typeof SignupRoute
   AnimeIdRoute: typeof AnimeIdRoute
+  CategorySlugRoute: typeof CategorySlugRoute
   WatchEpisodeIdRoute: typeof WatchEpisodeIdRoute
   AnimeIndexRoute: typeof AnimeIndexRoute
 }
@@ -227,6 +266,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/downloads': {
+      id: '/downloads'
+      path: '/downloads'
+      fullPath: '/downloads'
+      preLoaderRoute: typeof DownloadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/genres': {
       id: '/genres'
       path: '/genres'
@@ -239,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/me': {
+      id: '/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -297,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimeIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/category/$slug': {
+      id: '/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/watch/$episodeId': {
       id: '/watch/$episodeId'
       path: '/watch/$episodeId'
@@ -326,12 +386,15 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  DownloadsRoute: DownloadsRoute,
   GenresRoute: GenresRoute,
   LoginRoute: LoginRoute,
+  MeRoute: MeRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SearchRoute: SearchRoute,
   SignupRoute: SignupRoute,
   AnimeIdRoute: AnimeIdRoute,
+  CategorySlugRoute: CategorySlugRoute,
   WatchEpisodeIdRoute: WatchEpisodeIdRoute,
   AnimeIndexRoute: AnimeIndexRoute,
 }

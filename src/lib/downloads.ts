@@ -34,7 +34,7 @@ export const deleteDownload = (id: string) =>
 
 export async function downloadVideo(meta: Omit<DownloadMeta, "size" | "savedAt">, onProgress: (pct: number | null) => void, signal?: AbortSignal) {
   if (!isDownloadable(meta.sourceUrl)) throw new Error("This video link can't be downloaded");
-  const res = await fetch(meta.sourceUrl, { signal });
+  const res = await fetch(meta.sourceUrl, signal ? { signal } : {});
   if (!res.ok || !res.body) throw new Error(`Download failed (${res.status})`);
   const total = Number(res.headers.get("content-length")) || 0;
   const reader = res.body.getReader();
