@@ -81,18 +81,16 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 glass border-b border-border">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4 md:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 md:gap-6 md:px-6">
         <Logo />
         <nav className="hidden items-center gap-6 text-sm font-medium text-muted-foreground lg:flex">{links}</nav>
-        <form onSubmit={submit} className="ml-auto hidden md:block">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t("searchPlaceholder")}
-              className="h-9 w-56 rounded-xl border border-border bg-card pl-9 pr-3 text-sm outline-none focus:ring-1 focus:ring-ring" />
-          </div>
+        <form onSubmit={submit} role="search" className="ml-auto flex min-w-0 flex-1 items-center gap-1.5 md:max-w-xs">
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t("searchPlaceholder")} aria-label={t("search")}
+            className="h-9 min-w-0 flex-1 rounded-xl border border-border bg-card px-3 text-sm outline-none focus:ring-1 focus:ring-ring" />
+          <Button type="submit" variant="hero" size="icon" className="size-9 shrink-0" aria-label={t("search")}><Search /></Button>
         </form>
         <div className="hidden items-center gap-3 lg:flex"><LanguageSelect />{authButtons}</div>
-        <Button variant="ghost" size="icon" className="ml-auto md:ml-0 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
+        <Button variant="ghost" size="icon" className="shrink-0 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
           {open ? <X className="size-7" /> : <Menu className="size-7" />}
         </Button>
       </div>

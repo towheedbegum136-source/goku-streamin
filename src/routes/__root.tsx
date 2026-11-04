@@ -1,3 +1,4 @@
+import { BottomNav, CategoryBar } from "@/components/AppNav";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -123,8 +124,10 @@ function RootComponent() {
           <AuthProvider>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
+            <CategoryBar />
             <main className="flex-1"><Outlet /></main>
-            <SiteFooter />
+            <div className="pb-16"><SiteFooter /></div>
+            <BottomNav />
           </div>
           <Toaster />
           <InstallPrompt />
