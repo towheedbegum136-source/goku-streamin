@@ -26,3 +26,11 @@ describe("catalog rules", () => {
     expect(featuredCatalog(anime).map((a) => a.id)).toEqual(["one"]);
   });
 });
+import { categoryCatalog } from "./catalog";
+describe("categoryCatalog", () => {
+  const mk = (id: string, genres: string[], featured = false) => ({ id, genres, featured, published: true, episodes: [] }) as never;
+  const list = [mk("a", ["Action"], true), mk("m", ["Movie"]), mk("c", ["Cricket"])];
+  it("movie tab shows Movie-tagged titles", () => expect(categoryCatalog(list, "movie").map((a: { id: string }) => a.id)).toEqual(["m"]));
+  it("anime tab excludes movies and sport", () => expect(categoryCatalog(list, "anime").map((a: { id: string }) => a.id)).toEqual(["a"]));
+  it("trending shows featured", () => expect(categoryCatalog(list, "trending").map((a: { id: string }) => a.id)).toEqual(["a"]));
+});
