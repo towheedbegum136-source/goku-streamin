@@ -1,6 +1,4 @@
 # Goku Streaming roadmap
-- [ ] Add requested header/category navigation, Home/Downloads/Me bottom bar, horizontal shelves and profile
-- [ ] Add explicit authorized direct-video downloads, progress, device storage, offline playback and deletion; verify
 - [x] Add branded manifest/icons, preview-safe non-caching service worker configuration, and native install popup; simulated acceptance/dismissal, standalone suppression, icons, and phone/desktop verified
 - [ ] Verify real Android native installation and generated service worker on updated published site — blocked: publication and supported Android device required
 - [x] Inspect both projects and select safe improvements from uploaded source ZIP, including the second upload
