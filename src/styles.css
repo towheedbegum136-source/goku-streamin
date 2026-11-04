@@ -143,3 +143,7 @@
 @utility animate-rise {
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
