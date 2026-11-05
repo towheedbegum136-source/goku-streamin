@@ -76,8 +76,8 @@
   --ring: oklch(0.66 0.25 305);
   --gradient-brand: linear-gradient(100deg, oklch(0.68 0.26 315), oklch(0.62 0.24 290) 50%, oklch(0.68 0.19 250));
   --gradient-text: linear-gradient(90deg, oklch(0.72 0.25 310), oklch(0.72 0.18 255));
-  --gradient-hero-fade: linear-gradient(to top, var(--background) 4%, oklch(0.12 0.025 285 / 70%) 35%, transparent 75%);
-  --gradient-hero-side: linear-gradient(to right, oklch(0.1 0.03 285 / 92%) 0%, oklch(0.1 0.03 285 / 55%) 45%, transparent 75%);
+  --gradient-hero-fade: linear-gradient(to top, var(--background) 4%, oklch(0.12 0.025 285 / 45%) 35%, transparent 75%);
+  --gradient-hero-side: linear-gradient(to right, oklch(0.1 0.03 285 / 55%) 0%, oklch(0.1 0.03 285 / 25%) 45%, transparent 75%);
   --shadow-glow: 0 10px 40px -10px oklch(0.66 0.25 305 / 70%);
   --chart-1: oklch(0.66 0.25 305);
   --chart-2: oklch(0.68 0.19 255);
