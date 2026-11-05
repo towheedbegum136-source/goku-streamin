@@ -48,7 +48,7 @@ function Index() {
           <source src={homeVideo.url} type="video/mp4" />
           <source src={homeVideoWebm.url} type="video/webm" />
         </video>
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-background/50" />
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-background/20" />
         <div className="absolute inset-0 -z-10 bg-hero-side" />
         <div className="absolute inset-0 -z-10 bg-hero-fade" />
         <div className="mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 md:px-6 md:justify-center md:pb-10">
