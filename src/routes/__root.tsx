@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { InstallPrompt } from "@/components/InstallPrompt";
+import { AppInstallProvider } from "@/lib/app-install";
 
 function NotFoundComponent() {
   const { t } = useI18n();
@@ -122,6 +123,7 @@ function RootComponent() {
       <I18nProvider>
         <SettingsProvider>
           <AuthProvider>
+          <AppInstallProvider>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
             <CategoryBar />
@@ -131,6 +133,7 @@ function RootComponent() {
           </div>
           <Toaster />
           <InstallPrompt />
+          </AppInstallProvider>
           </AuthProvider>
         </SettingsProvider>
       </I18nProvider>

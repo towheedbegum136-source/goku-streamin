@@ -1,4 +1,5 @@
 # Goku Streaming roadmap
+- [x] Add permanent footer install action; verify shared native event after dismissal, manual instructions, installed suppression, manifest/icons, desktop/mobile layout and stable hero; admin code unchanged
 - [x] Add branded manifest/icons, preview-safe non-caching service worker configuration, and native install popup; simulated acceptance/dismissal, standalone suppression, icons, and phone/desktop verified
 - [ ] Verify real Android native installation and generated service worker on updated published site — blocked: publication and supported Android device required
 - [x] Inspect both projects and select safe improvements from uploaded source ZIP, including the second upload
