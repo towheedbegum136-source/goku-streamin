@@ -40,11 +40,35 @@ it("keeps the native footer installation action available after dismissing the a
 });
 
 it("retains the native event during the automatic dismissal cooldown", async () => {
+  cleanup();
   localStorage.setItem(INSTALL_DISMISSED_KEY, String(Date.now()));
+  render(<AppInstallProvider><Controls /></AppInstallProvider>);
   const prompt = offer();
   expect(state().open).toBe(false);
   await act(async () => { fireEvent.click(screen.getByText("Install App")); });
   expect(prompt).toHaveBeenCalledTimes(1);
+});
+
+it("automatically invites a first-time visitor even without a native eligibility event", () => {
+  expect(state()).toEqual({ open: true, manual: false, installed: false });
+});
+
+it("does not automatically invite a previously installed visitor on reload", () => {
+  cleanup();
+  localStorage.setItem(INSTALL_ACCEPTED_KEY, "true");
+  render(<AppInstallProvider><Controls /></AppInstallProvider>);
+  expect(state().open).toBe(false);
+});
+
+it("never automatically invites visitors launching in standalone app mode", () => {
+  cleanup();
+  Object.defineProperty(navigator, "standalone", { value: true, configurable: true });
+  try {
+    render(<AppInstallProvider><Controls /></AppInstallProvider>);
+    expect(state()).toEqual({ open: false, manual: false, installed: true });
+  } finally {
+    Object.defineProperty(navigator, "standalone", { value: false, configurable: true });
+  }
 });
 
 it("shows manual installation instructions when no native prompt exists", async () => {

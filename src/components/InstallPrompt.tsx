@@ -7,7 +7,7 @@ import { useAppInstall } from "@/lib/app-install";
 export function InstallPrompt() {
   const { open, manual, installed, busy, requestInstall, dismiss } = useAppInstall();
   return <Dialog open={open} onOpenChange={(next) => { if (!next) dismiss(); }}>
-    <DialogContent className="w-[calc(100%-2rem)] max-w-sm rounded-lg border-primary/40 bg-card p-7 shadow-glow motion-reduce:animate-none" onEscapeKeyDown={(event) => { if (busy) event.preventDefault(); }} onPointerDownOutside={(event) => { if (busy) event.preventDefault(); }}>
+    <DialogContent className="w-[calc(100%-2rem)] max-w-sm max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-lg border-primary/40 bg-card p-7 shadow-glow motion-reduce:animate-none" onEscapeKeyDown={(event) => { if (busy) event.preventDefault(); }} onPointerDownOutside={(event) => { if (busy) event.preventDefault(); }}>
       <img src={logo.url} alt="Goku Streaming" width={80} height={80} className="mx-auto rounded-xl object-contain" />
       <DialogTitle className="text-center font-display text-xl leading-snug">{installed ? "Goku Streaming is installed" : "Install Goku Streaming App"}</DialogTitle>
       <DialogDescription className="text-center">{installed ? "Open Goku Streaming from its app icon on your home screen." : manual ? "Add Goku Streaming to your home screen." : "Your anime. Full power."}</DialogDescription>
@@ -25,7 +25,7 @@ export function InstallPrompt() {
       </div>}
       <div className="mt-2 grid gap-2">
         {manual || installed ? <Button variant="hero" onClick={dismiss}>{installed && <CheckCircle2 />}Got it</Button> : <>
-          <Button variant="hero" size="lg" disabled={busy} onClick={() => void requestInstall()}>{busy ? <Loader2 className="animate-spin motion-reduce:animate-none" /> : <Download />}{busy ? "Installing…" : "Install Now"}</Button>
+          <Button variant="hero" size="lg" disabled={busy} onClick={() => void requestInstall()}>{busy ? <Loader2 className="animate-spin motion-reduce:animate-none" /> : <Download />}{busy ? "Installing…" : "Install App"}</Button>
           <Button variant="ghost" disabled={busy} onClick={dismiss}>Not Now</Button>
         </>}
       </div>
