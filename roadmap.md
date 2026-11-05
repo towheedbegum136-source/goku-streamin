@@ -1,4 +1,5 @@
 # Goku Streaming roadmap
+- [ ] Verify automatic invitation without native event, footer native/manual paths, installed suppression and phone layout in one PWA update
 - [x] Add permanent footer install action; verify shared native event after dismissal, manual instructions, installed suppression, manifest/icons, desktop/mobile layout and stable hero; admin code unchanged
 - [x] Add branded manifest/icons, preview-safe non-caching service worker configuration, and native install popup; simulated acceptance/dismissal, standalone suppression, icons, and phone/desktop verified
 - [ ] Verify real Android native installation and generated service worker on updated published site — blocked: publication and supported Android device required

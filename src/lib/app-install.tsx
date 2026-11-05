@@ -32,10 +32,7 @@ export function AppInstallProvider({ children }: { children: ReactNode }) {
     const isInstalled = () => standalone.matches ||
       (navigator as Navigator & { standalone?: boolean }).standalone === true;
     setInstalled(isInstalled());
-    const onPrompt = (event: Event) => {
-      event.preventDefault();
-      // Retain eligibility even after automatic-popup dismissal for the footer action.
-      pending.current = event as InstallEvent;
+    const offerAutomatically = () => {
       let accepted = false;
       let dismissed: string | null = null;
       try {
@@ -45,6 +42,12 @@ export function AppInstallProvider({ children }: { children: ReactNode }) {
       if (sessionDismissed.current || !canOfferInstall(isInstalled() || accepted, dismissed, Date.now())) return;
       setManual(false);
       setOpen(true);
+    };
+    const onPrompt = (event: Event) => {
+      event.preventDefault();
+      // Retain eligibility even after automatic-popup dismissal for the footer action.
+      pending.current = event as InstallEvent;
+      offerAutomatically();
     };
     const onInstalled = () => {
       pending.current = null;
@@ -59,6 +62,9 @@ export function AppInstallProvider({ children }: { children: ReactNode }) {
     window.addEventListener("beforeinstallprompt", onPrompt);
     window.addEventListener("appinstalled", onInstalled);
     standalone.addEventListener("change", onDisplayChange);
+    // The custom invitation does not depend on Chrome issuing an eligibility event.
+    // Native installation still requires a genuine event and a visitor's click.
+    offerAutomatically();
     return () => {
       window.removeEventListener("beforeinstallprompt", onPrompt);
       window.removeEventListener("appinstalled", onInstalled);
