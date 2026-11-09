@@ -15,6 +15,13 @@
       "when": 1793200696103,
       "tag": "0001_create_site_settings",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794236087363,
+      "tag": "0002_scope_site_settings_read",
+      "breakpoints": true
     }
   ]
 }

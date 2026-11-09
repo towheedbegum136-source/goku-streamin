@@ -1,0 +1,2 @@
+DROP POLICY IF EXISTS "Anyone can read site settings" ON public.site_settings;
+CREATE POLICY "Anyone can read the site settings row" ON public.site_settings FOR SELECT TO anon, authenticated USING (id = 1);
